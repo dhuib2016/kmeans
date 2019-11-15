@@ -15,7 +15,7 @@ def point_avg(points):
 
     new_center = []
 
-    for dimension in xrange(dimensions):
+    for dimension in range(dimensions):
         dim_sum = 0  # dimension sum
         for p in points:
             dim_sum += p[dimension]
@@ -40,7 +40,7 @@ def update_centers(data_set, assignments):
     for assignment, point in zip(assignments, data_set):
         new_means[assignment].append(point)
         
-    for points in new_means.itervalues():
+    for points in new_means.values():
         centers.append(point_avg(points))
 
     return centers
@@ -59,9 +59,9 @@ def assign_points(data_points, centers):
     """
     assignments = []
     for point in data_points:
-        shortest = ()  # positive infinity
+        shortest = float('inf')  # positive infinity
         shortest_index = 0
-        for i in xrange(len(centers)):
+        for i in range(len(centers)):
             val = distance(point, centers[i])
             if val < shortest:
                 shortest = val
@@ -76,7 +76,7 @@ def distance(a, b):
     dimensions = len(a)
     
     _sum = 0
-    for dimension in xrange(dimensions):
+    for dimension in range(dimensions):
         difference_sq = (a[dimension] - b[dimension]) ** 2
         _sum += difference_sq
     return sqrt(_sum)
@@ -94,7 +94,7 @@ def generate_k(data_set, k):
     min_max = defaultdict(int)
 
     for point in data_set:
-        for i in xrange(dimensions):
+        for i in range(dimensions):
             val = point[i]
             min_key = 'min_%d' % i
             max_key = 'max_%d' % i
